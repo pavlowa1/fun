@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<title>Прикольна сторінка</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(120deg, #ff9a9e, #fad0c4);
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+    animation: bgAnimation 10s infinite alternate;
+  }
+
+  @keyframes bgAnimation {
+    0% { background: linear-gradient(120deg, #ff9a9e, #fad0c4); }
+    50% { background: linear-gradient(120deg, #a1c4fd, #c2e9fb); }
+    100% { background: linear-gradient(120deg, #fbc2eb, #a6c1ee); }
+  }
+
+  .fun-button {
+    padding: 20px 50px;
+    font-size: 24px;
+    color: white;
+    background: #ff6f61;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  }
+
+  .fun-button:hover {
+    background: #ffb347;
+    transform: scale(1.2) rotate(10deg);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  }
+
+  .bubbles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .bubble {
+    position: absolute;
+    bottom: -50px;
+    width: 20px;
+    height: 20px;
+    background: rgba(255,255,255,0.7);
+    border-radius: 50%;
+    animation: rise 5s linear infinite;
+  }
+
+  @keyframes rise {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-100vh) scale(0.5); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+
+<button class="fun-button" onclick="alert('Ви натиснули кнопку! 🎉')">Натисни мене!</button>
+
+<div class="bubbles"></div>
+
+<script>
+  const bubblesContainer = document.querySelector('.bubbles');
+
+  function createBubble() {
+    const bubble = document.createElement('div');
+    bubble.classList.add('bubble');
+    bubble.style.left = Math.random() * window.innerWidth + 'px';
+    bubble.style.width = bubble.style.height = Math.random() * 30 + 10 + 'px';
+    bubble.style.animationDuration = Math.random() * 5 + 3 + 's';
+    bubblesContainer.appendChild(bubble);
+
+    setTimeout(() => {
+      bubble.remove();
+    }, 8000);
+  }
+
+  setInterval(createBubble, 300);
+</script>
+
+</body>
+</html>
